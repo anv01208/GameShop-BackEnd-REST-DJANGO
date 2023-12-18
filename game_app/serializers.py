@@ -24,19 +24,23 @@ class SaleGameSerializer(ModelSerializer):
         fields = ['id', 'title', 'price', 'event', 'discounted_price', 'is_free']
 
     def get_discounted_price(self, obj):
-        if obj.event.pk == 1:
-            discount_percentage = 25
-        elif obj.event.pk == 3:
-            discount_percentage = 25
-        elif obj.event.pk == 2:
-            discount_percentage = 50
-        elif obj.event.pk == 4:
-            discount_percentage = 15
+        if obj.event and obj.event.pk:
+
+            if obj.event.pk == 1:
+                discount_percentage = 25
+            elif obj.event.pk == 3:
+                discount_percentage = 25
+            elif obj.event.pk == 2:
+                discount_percentage = 50
+            elif obj.event.pk == 4:
+                discount_percentage = 15
+            else:
+                return obj.price
+
+            discounted_price = obj.price * (1 - discount_percentage / 100)
+            return discounted_price
         else:
             return obj.price
-
-        discounted_price = obj.price * (1 - discount_percentage / 100)
-        return discounted_price
 
 
 class GameDetailSerializer(ModelSerializer):

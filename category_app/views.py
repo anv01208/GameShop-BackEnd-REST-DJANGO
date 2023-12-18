@@ -48,7 +48,7 @@ class CategoryDetailView(APIView):
         return super(CategoryDetailView,self).get_permissions()
 
     def get(self, request, pk):
-        games = Game.objects.get(genre=pk)
+        games = Game.objects.filter(genre=pk)
         data = GamesByCategorySerializer(games,many=True).data
         return Response(data, status.HTTP_200_OK)
 

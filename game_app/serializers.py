@@ -46,7 +46,7 @@ class SaleGameSerializer(ModelSerializer):
 class GameDetailSerializer(ModelSerializer):
     class Meta:
         model = Game
-        fields = ['title', 'description', 'price', 'release_at', 'brand_name', 'genre', 'event', 'is_free']
+        fields = ['id','title', 'description', 'price', 'release_at', 'brand_name', 'genre', 'event', 'is_free']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)

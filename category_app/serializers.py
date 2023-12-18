@@ -13,7 +13,7 @@ class CategorySerializer(ModelSerializer):
 class GamesByCategorySerializer(ModelSerializer):
     class Meta:
         model = Game
-        fields = ['title', 'description', 'price', 'release_at', 'brand_name', 'genre']
+        fields = ['id','title', 'description', 'price', 'release_at', 'brand_name', 'genre']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)

@@ -41,6 +41,13 @@ class GamesApiView(APIView):
             brand_id = Brand.objects.get('brand')
             brand = Brand.objects.get(id=brand_id)
             games = Game.objects.filter(brand_name=brand)
+        if 'free' in request.GET.keys():
+            is_free = (request.GET.get('free')[0].upper() + request.GET.get('free')[1:].lower())
+            try:
+                games = Game.objects.filter(is_free=is_free)
+            except django.core.exceptions.ValidationError:
+                games =Game.objects.all()
+
         if 'search' in request.GET.keys():
             search = request.GET.get('search')
             games = games.filter(title__contains=search).union(games.filter(description__contains=search))

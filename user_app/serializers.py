@@ -18,7 +18,7 @@ class UserCreateSerializer(ModelSerializer):
 class UserProfileSerializer(ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['email', 'name', 'surname', 'phone', 'wallet', 'birth_date', 'age',]
+        fields = ['email', 'name', 'surname', 'phone', 'wallet', 'birth_date', 'age','number_of_purchases']
 
 
 class UserProfileUpdateSerializer(ModelSerializer):
